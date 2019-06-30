@@ -8,11 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import news.roadster.com.newsapp.R;
+
+/**
+ * News fragment: list of fragment details showing
+ */
 public class NewsFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.article_view, container, false);
     }
+
+
 }

@@ -1,5 +1,5 @@
 package news.roadster.com.newsapp;
 
-public class Application {
+public class Application extends android.app.Application {
 
 }
