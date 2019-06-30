@@ -1,5 +1,6 @@
 *.iml
 .gradle
+*.rdb
 .idea/misc.xml
 .idea/vcs.xml
 /local.properties
