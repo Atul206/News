@@ -7,15 +7,16 @@ import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
 
+import dagger.Module;
 import dagger.Provides;
-import news.roadster.com.newsapp.BuildConfig;
 import news.roadster.com.newsapp.NApplication;
+import news.roadster.com.newsapp.repo.NewsRepository;
 import news.roadster.com.newsapp.network.NewsService;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-@Singleton
+@Module
 public class AppModule {
     NApplication application;
 
@@ -48,5 +49,11 @@ public class AppModule {
                 .build();
 
         return retrofit.create(NewsService.class);
+    }
+
+    @Provides
+    @Singleton
+    public NewsRepository newsRepository(){
+        return new NewsRepository(application);
     }
 }
