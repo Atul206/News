@@ -12,21 +12,25 @@
         android:id="@+id/icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/image_top_padding_5"
         android:paddingBottom="@dimen/image_top_padding_5"
+        android:paddingTop="@dimen/image_top_padding_5"
         android:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/title_padding_2"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:paddingBottom="@dimen/title_padding_2"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="@dimen/title_padding_2"
         android:text="New title"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/title_color"
         android:textSize="@dimen/title_size_16"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
 
@@ -40,9 +44,7 @@
         android:text="New title asdjhasjdgajsdahsdkhaskdhk asdhajkshdkjahsdkjhasdsahdjkashdjkahsdakjhdjkahsdkjhasjkhdjkahsd"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/desciption_size_14"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
 
@@ -55,7 +57,7 @@
         android:padding="@dimen/padding_10"
         android:text="Read more"
         android:textColor="@color/link_color"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_8"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
@@ -69,11 +71,11 @@
         android:maxLines="10"
         android:padding="@dimen/padding_10"
         android:text="Source: Indian Tv"
-        android:textColor="@color/link_color"
-        android:textSize="16sp"
+        android:textColor="@color/source_color"
+        android:textSize="@dimen/text_8"
         android:textStyle="bold"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/news_link" />
 
 
 </android.support.constraint.ConstraintLayout>

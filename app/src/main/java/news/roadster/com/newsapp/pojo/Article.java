@@ -7,6 +7,7 @@ public class Article implements Serializable{
     String author;
     String title;
     String url;
+    String description;
     String urlToImage;
     String publishedAt;
     String content;
@@ -78,5 +79,13 @@ public class Article implements Serializable{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

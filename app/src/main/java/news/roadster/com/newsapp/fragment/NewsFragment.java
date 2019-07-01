@@ -48,13 +48,13 @@ public class NewsFragment extends Fragment implements NewsListView {
         LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         recyclerView.setLayoutManager(linearLayout);
-        recyclerView.setAdapter(newsListAdapter);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         NApplication.getAppComponent().plus(new NewsFragmentModule(getContext(), this)).inject(this);
+        recyclerView.setAdapter(newsListAdapter);
         newsViewModel = ViewModelProviders.of(getActivity()).get(NewsViewModel.class);
         onObserveNewsModel();
     }
