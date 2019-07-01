@@ -12,15 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
+import news.roadster.com.newsapp.NApplication;
 import news.roadster.com.newsapp.R;
-import news.roadster.com.newsapp.repo.NewsRepository;
+import news.roadster.com.newsapp.di.NewsFragmentModule;
 import news.roadster.com.newsapp.repo.NewsViewModel;
 
 /**
  * News fragment: list of fragment details showing
  */
-public class NewsFragment extends Fragment {
+public class NewsFragment extends Fragment implements NewsListView {
+
+    @Inject
+    NewsListPresenter newsListPresenter;
 
     private NewsViewModel newsViewModel;
 
@@ -34,17 +37,8 @@ public class NewsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         newsViewModel = ViewModelProviders.of(getActivity()).get(NewsViewModel.class);
-        onObserveNewsModel();
-    }
-
-    private void onObserveNewsModel(){
-        newsViewModel.getNewsRepository().observe(this, newsData -> {
-            if(newsData != null ) {
-                Log.d("Test", newsData.toString());
-            }else{
-                Log.d("Test", "Getting null or empty");
-            }
-        });
+        NApplication.getAppComponent().plus(new NewsFragmentModule(this, newsViewModel, getActivity())).inject(this);
+        newsListPresenter.onObserveNewsModel();
     }
 
 
@@ -54,5 +48,15 @@ public class NewsFragment extends Fragment {
         if(newsViewModel.getNewsRepository().hasActiveObservers()){
             newsViewModel.getNewsRepository().removeObservers(getActivity());
         }
+    }
+
+    @Override
+    public void populateInformation() {
+
+    }
+
+    @Override
+    public void populateOfflineInforamtion() {
+
     }
 }

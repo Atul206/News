@@ -17,4 +17,5 @@ import news.roadster.com.newsapp.repo.NewsViewModel;
 public interface AppComponent {
     void inject(NApplication application);
     void inject(NewsViewModel newsViewModel);
+    NewsFragmenComponent plus(NewsFragmentModule newsFragmentModule);
 }
