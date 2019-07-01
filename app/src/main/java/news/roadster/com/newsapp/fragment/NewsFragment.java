@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import javax.inject.Inject;
 
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import news.roadster.com.newsapp.NApplication;
 import news.roadster.com.newsapp.R;
 import news.roadster.com.newsapp.di.NewsFragmentModule;
@@ -25,34 +28,59 @@ public class NewsFragment extends Fragment implements NewsListView {
     @Inject
     NewsListPresenter newsListPresenter;
 
+    @Inject
+    NewsListAdapter newsListAdapter;
+
+    private RecyclerView recyclerView;
+
     private NewsViewModel newsViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.article_view, container, false);
+        View view = inflater.inflate(R.layout.article_view, container, false);
+        initUI(view);
+        return view;
+    }
+
+    private void initUI(View view) {
+        recyclerView = view.findViewById(R.id.list);
+        LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        recyclerView.setLayoutManager(linearLayout);
+        recyclerView.setAdapter(newsListAdapter);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        NApplication.getAppComponent().plus(new NewsFragmentModule(getContext(), this)).inject(this);
         newsViewModel = ViewModelProviders.of(getActivity()).get(NewsViewModel.class);
-        NApplication.getAppComponent().plus(new NewsFragmentModule(this, newsViewModel, getActivity())).inject(this);
-        newsListPresenter.onObserveNewsModel();
+        onObserveNewsModel();
     }
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(newsViewModel.getNewsRepository().hasActiveObservers()){
+        if (newsViewModel.getNewsRepository().hasActiveObservers()) {
             newsViewModel.getNewsRepository().removeObservers(getActivity());
         }
     }
 
+    public void onObserveNewsModel(){
+        newsViewModel.getNewsRepository().observe(getActivity(), newsData -> {
+            if(newsData != null ) {
+                populateInformation();
+            }else{
+                populateOfflineInforamtion();
+            }
+        });
+    }
+
     @Override
     public void populateInformation() {
-
+        newsListAdapter.notifyDataSetChanged();
     }
 
     @Override

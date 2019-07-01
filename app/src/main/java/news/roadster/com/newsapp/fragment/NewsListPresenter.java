@@ -12,24 +12,11 @@ import news.roadster.com.newsapp.repo.NewsViewModel;
 
 public class NewsListPresenter {
 
-    private  final NewsViewModel newsViewModel;
     private final NewsListView view;
-    private final LifecycleOwner lifecycleOwner;
+    private final Context context;
 
-    public NewsListPresenter(LifecycleOwner lifeCycleOwner, NewsViewModel model, NewsListView listView) {
-        newsViewModel = model;
+    public NewsListPresenter(Context context, NewsListView listView) {
         view = listView;
-        this.lifecycleOwner = lifeCycleOwner;
-    }
-
-
-    public void onObserveNewsModel(){
-        newsViewModel.getNewsRepository().observe(lifecycleOwner, newsData -> {
-            if(newsData != null ) {
-                view.populateInformation();
-            }else{
-                view.populateOfflineInforamtion();
-            }
-        });
+        this.context = context;
     }
 }
