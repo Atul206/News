@@ -7,13 +7,12 @@ import javax.inject.Inject;
 import news.roadster.com.newsapp.di.AppComponent;
 import news.roadster.com.newsapp.di.AppModule;
 import news.roadster.com.newsapp.di.DaggerAppComponent;
+import news.roadster.com.newsapp.network.NewsService;
+import news.roadster.com.newsapp.repo.NewsRepository;
 
 public class NApplication extends Application {
 
     public static AppComponent appComponent;
-
-    @Inject
-    NApplication application;
 
     @Override
     public void onCreate() {
@@ -22,9 +21,8 @@ public class NApplication extends Application {
     }
 
     public void initComponent(){
-        appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(application))
-                .build();
+        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        appComponent.inject(this);
     }
 
     public static AppComponent getAppComponent() {
