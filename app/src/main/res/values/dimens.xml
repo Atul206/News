@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_top_padding_5">5dp</dimen>
+    <dimen name="title_padding_2">2sp</dimen>
+    <dimen name="title_size_16">16sp</dimen>
+    <dimen name="desciption_size_14">14sp</dimen>
+    <dimen name="padding_10">10sp</dimen>
+    <dimen name="eleveation_10">10dp</dimen>
+</resources>

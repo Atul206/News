@@ -70,8 +70,8 @@ public class NewsFragment extends Fragment implements NewsListView {
 
     public void onObserveNewsModel(){
         newsViewModel.getNewsRepository().observe(getActivity(), newsData -> {
-            if(newsData != null ) {
-                populateInformation();
+            if(newsData != null && newsData.getArticles() != null) {
+                newsListAdapter.updateList(newsData.getArticles());
             }else{
                 populateOfflineInforamtion();
             }

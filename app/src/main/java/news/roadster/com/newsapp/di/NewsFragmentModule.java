@@ -16,6 +16,7 @@ public class NewsFragmentModule {
     public Context context;
     public NewsFragmentModule(Context context, NewsListView newsListView){
         this.newsListView = newsListView;
+        this.context = context;
     }
 
     @ActivityScope

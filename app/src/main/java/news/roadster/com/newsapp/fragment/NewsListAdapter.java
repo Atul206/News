@@ -26,13 +26,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.article_view,
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.article_item,
                 parent, false));
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        holder.setItem(articles.get(position), position);
     }
 
     @Override
@@ -40,10 +40,19 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
         return 0;
     }
 
+    public void updateList(List<Article> articles) {
+        this.articles = articles;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(View itemView) {
             super(itemView);
+        }
+
+        public void setItem(Article article, int position) {
+
         }
     }
 }
