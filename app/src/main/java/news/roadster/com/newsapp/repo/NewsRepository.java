@@ -32,7 +32,7 @@ public class NewsRepository extends LiveData<NewsData> {
         else return newsRepository;
     }
 
-    public void fetchInformation(String countryCode) {
+    public void fetchInformation() {
         newsService.getNewList("in", NEWS_API_KEY)
                 .observeOn(Schedulers.computation())
                 .subscribeOn(Schedulers.io())
@@ -45,6 +45,7 @@ public class NewsRepository extends LiveData<NewsData> {
                     @Override
                     public void onError(Throwable e) {
                         Log.e("Test", e.getMessage() + " Message");
+                        //offlineSupport
                     }
 
                     @Override

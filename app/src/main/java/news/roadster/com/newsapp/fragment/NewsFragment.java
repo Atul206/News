@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.squareup.picasso.Picasso;
+
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;

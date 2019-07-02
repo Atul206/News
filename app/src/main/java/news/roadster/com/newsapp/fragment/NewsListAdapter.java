@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -84,25 +86,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
             source.setText(article.getAuthor());
             news_link.setText(context.getString(R.string.read_more) +  article.getUrl());
 
-            /*Observable.fromCallable(() -> {
-                URL url = null;
-                try {
-                    url = new URL(article.getUrlToImage());
-                } catch (MalformedURLException e) {
-                    throw e;
-                }
-                Bitmap bmp = null;
-                try {
-                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    return bmp;
-                } catch (IOException e) {
-                    throw e;
-                }
-            }).doOnError(t -> {
-                Log.e("Test", t.getMessage());
-            }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).subscribe((x) -> {
-                if(x != null) icon.setImageBitmap(x);
-            });*/
+            Picasso.get().load(article.getUrlToImage()).into(icon);
 
             itemLayout.setOnClickListener(v -> {
                 listCallback.openWebView(article);

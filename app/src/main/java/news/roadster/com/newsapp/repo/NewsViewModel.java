@@ -21,7 +21,7 @@ public class NewsViewModel extends AndroidViewModel {
     public NewsViewModel(@NonNull Application application) {
         super(application);
         NApplication.getAppComponent().inject(this);
-        newsRepository.fetchInformation("us");
+        newsRepository.fetchInformation();
     }
 
     public LiveData<NewsData> getNewsRepository() {
