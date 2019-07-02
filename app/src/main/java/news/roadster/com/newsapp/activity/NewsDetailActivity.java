@@ -18,7 +18,6 @@ public class NewsDetailActivity extends AppCompatActivity {
     Gson gson;
 
     private Article article;
-    private String articleData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
