@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import news.roadster.com.newsapp.NApplication;

@@ -1,13 +1,10 @@
 package news.roadster.com.newsapp.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
-import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
