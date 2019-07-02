@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openDetailActivity(Article article) {
-        if(NewsUtil.isOnline(this)) {
+        if (NewsUtil.isOnline(this)) {
             Intent intent = new Intent(this, NewsDetailActivity.class);
             intent.putExtra("NEWS_DETAIL", gson.toJson(article));
             startActivity(intent);
-        }else{
+        } else {
             Snackbar.make(mainLayout, "Device is offline", 3000).show();
         }
     }
