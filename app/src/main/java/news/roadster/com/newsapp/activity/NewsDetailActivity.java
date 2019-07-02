@@ -24,6 +24,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_main);
         NApplication.getAppComponent().inject(this);
+        //Getting argument passes from one activity to another
         Intent intent = getIntent();
         article = gson.fromJson(intent.getExtras().getString("NEWS_DETAIL"), Article.class);
     }

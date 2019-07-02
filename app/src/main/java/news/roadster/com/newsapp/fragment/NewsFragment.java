@@ -72,22 +72,12 @@ public class NewsFragment extends Fragment implements NewsListView {
 
     public void onObserveNewsModel(){
         newsViewModel.getNewsRepository().observe(getActivity(), newsData -> {
+            //Check if newsdata getting null or empty
             if(newsData != null && newsData.getArticles() != null) {
                 newsListAdapter.updateList(newsData.getArticles());
-            }else{
-                populateOfflineInforamtion();
             }
+            //Offline manage by ViewModelClass
         });
-    }
-
-    @Override
-    public void populateInformation() {
-        newsListAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void populateOfflineInforamtion() {
-
     }
 
     @Override

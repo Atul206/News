@@ -17,6 +17,8 @@ public class NewsRepository extends LiveData<NewsData> {
 
     private static NewsRepository newsRepository;
 
+    private String COUNTRY_CODE = "in";//We can pass and change the country specific news
+
     private final NewsService newsService;
 
     Context context;
@@ -33,12 +35,13 @@ public class NewsRepository extends LiveData<NewsData> {
     }
 
     public void fetchInformation() {
-        newsService.getNewList("in", NEWS_API_KEY)
+        newsService.getNewList(COUNTRY_CODE, NEWS_API_KEY)
                 .observeOn(Schedulers.computation())
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new DisposableObserver<NewsData>() {
                     @Override
                     public void onNext(NewsData newsData) {
+                        //Presist last information into SharedPrefernces
                         OfflineManager.putPref(context, OfflineManager.OFFLINE_NEWS_DATA, newsData);
                         postValue(newsData);
                     }
@@ -46,10 +49,12 @@ public class NewsRepository extends LiveData<NewsData> {
                     @Override
                     public void onError(Throwable e) {
                         Log.e("Test", e.getMessage() + " Message");
+                        //getting offline information
                         NewsData newsData = OfflineManager.getPref(context,OfflineManager.OFFLINE_NEWS_DATA, null);
                         if(newsData == null){
                             Log.e("Test", "getting offfline null");
                         } else{
+                            //post offline saved information
                             postValue(newsData);
                         }
                     }

@@ -27,16 +27,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainLayout = findViewById(R.id.main_container);
+        //Inject MainActivity
         NApplication.getAppComponent().inject(this);
     }
 
 
     public void openDetailActivity(Article article) {
+        //check device is online or not
         if (NewsUtil.isOnline(this)) {
             Intent intent = new Intent(this, NewsDetailActivity.class);
             intent.putExtra("NEWS_DETAIL", gson.toJson(article));
             startActivity(intent);
         } else {
+            //When device is offline
             Snackbar.make(mainLayout, "Device is offline", 3000).show();
         }
     }
