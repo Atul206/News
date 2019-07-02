@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import news.roadster.com.newsapp.NApplication;
+import news.roadster.com.newsapp.OfflineManager;
 import news.roadster.com.newsapp.network.NewsService;
 import news.roadster.com.newsapp.pojo.NewsData;
 
@@ -39,13 +40,19 @@ public class NewsRepository extends LiveData<NewsData> {
                 .subscribeWith(new DisposableObserver<NewsData>() {
                     @Override
                     public void onNext(NewsData newsData) {
+                        OfflineManager.putPref(context, OfflineManager.OFFLINE_NEWS_DATA, newsData);
                         postValue(newsData);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.e("Test", e.getMessage() + " Message");
-                        //offlineSupport
+                        NewsData newsData = OfflineManager.getPref(context,OfflineManager.OFFLINE_NEWS_DATA, null);
+                        if(newsData == null){
+                            Log.e("Test", "getting offfline null");
+                        } else{
+                            postValue(newsData);
+                        }
                     }
 
                     @Override
