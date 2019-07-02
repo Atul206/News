@@ -6,7 +6,9 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import news.roadster.com.newsapp.MainActivity;
 import news.roadster.com.newsapp.NApplication;
+import news.roadster.com.newsapp.NewsDetailActivity;
 import news.roadster.com.newsapp.fragment.NewsFragment;
 import news.roadster.com.newsapp.network.NewsService;
 import news.roadster.com.newsapp.repo.NewsRepository;
@@ -17,5 +19,7 @@ import news.roadster.com.newsapp.repo.NewsViewModel;
 public interface AppComponent {
     void inject(NApplication application);
     void inject(NewsViewModel newsViewModel);
+    void inject(MainActivity mainActivity);
+    void inject(NewsDetailActivity newsDetailActivity);
     NewsFragmenComponent plus(NewsFragmentModule newsFragmentModule);
 }

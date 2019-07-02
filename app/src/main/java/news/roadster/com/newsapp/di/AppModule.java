@@ -1,5 +1,8 @@
 package news.roadster.com.newsapp.di;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -28,5 +31,13 @@ public class AppModule {
     public NewsRepository provideNewsRepository(){
         String baseUrl = "https://newsapi.org/v2/";
         return NewsRepository.getInstance(application, NetworkGenerator.generateNewsService(baseUrl));
+    }
+
+    @Singleton
+    @Provides
+    public Gson gson() {
+        return new GsonBuilder()
+                .setLenient()
+                .create();
     }
 }

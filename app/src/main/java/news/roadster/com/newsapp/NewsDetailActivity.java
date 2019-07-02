@@ -10,22 +10,24 @@ import javax.inject.Inject;
 import androidx.appcompat.app.AppCompatActivity;
 import news.roadster.com.newsapp.pojo.Article;
 
-public class MainActivity extends AppCompatActivity {
+public class NewsDetailActivity extends AppCompatActivity {
 
     @Inject
-    public Gson gson;
+    Gson gson;
+
+    private Article article;
+    private String articleData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.detail_main);
         NApplication.getAppComponent().inject(this);
+        Intent intent = getIntent();
+        article = gson.fromJson(intent.getExtras().getString("NEWS_DETAIL"), Article.class);
     }
 
-
-    public void openDetailActivity(Article article) {
-        Intent intent = new Intent(this, NewsDetailActivity.class);
-        intent.putExtra("NEWS_DETAIL", gson.toJson(article));
-        startActivity(intent);
+    public Article getArticleData() {
+        return article;
     }
 }
