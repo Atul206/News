@@ -1,4 +1,4 @@
-package news.roadster.com.newsapp;
+package news.roadster.com.newsapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import javax.inject.Inject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import news.roadster.com.newsapp.NApplication;
+import news.roadster.com.newsapp.R;
 import news.roadster.com.newsapp.pojo.Article;
 import news.roadster.com.newsapp.util.NewsUtil;
 

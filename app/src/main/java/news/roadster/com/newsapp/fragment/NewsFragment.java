@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import news.roadster.com.newsapp.MainActivity;
+import news.roadster.com.newsapp.activity.MainActivity;
 import news.roadster.com.newsapp.NApplication;
 import news.roadster.com.newsapp.R;
 import news.roadster.com.newsapp.di.NewsFragmentModule;

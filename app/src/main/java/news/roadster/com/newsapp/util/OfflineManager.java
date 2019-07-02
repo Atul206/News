@@ -1,10 +1,11 @@
-package news.roadster.com.newsapp;
+package news.roadster.com.newsapp.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
+import news.roadster.com.newsapp.BuildConfig;
 import news.roadster.com.newsapp.pojo.NewsData;
 
 public class OfflineManager {

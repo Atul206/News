@@ -9,7 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.fragment.app.Fragment;
-import news.roadster.com.newsapp.NewsDetailActivity;
+import news.roadster.com.newsapp.activity.NewsDetailActivity;
 import news.roadster.com.newsapp.R;
 
 public class NewsDetailFragment extends Fragment {

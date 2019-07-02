@@ -1,4 +1,4 @@
-package news.roadster.com.newsapp;
+package news.roadster.com.newsapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import javax.inject.Inject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import news.roadster.com.newsapp.NApplication;
+import news.roadster.com.newsapp.R;
 import news.roadster.com.newsapp.pojo.Article;
 
 public class NewsDetailActivity extends AppCompatActivity {

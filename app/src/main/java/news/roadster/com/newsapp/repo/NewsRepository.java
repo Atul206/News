@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import news.roadster.com.newsapp.NApplication;
-import news.roadster.com.newsapp.OfflineManager;
+import news.roadster.com.newsapp.util.OfflineManager;
 import news.roadster.com.newsapp.network.NewsService;
 import news.roadster.com.newsapp.pojo.NewsData;
 
