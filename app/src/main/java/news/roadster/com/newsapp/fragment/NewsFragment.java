@@ -15,9 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import news.roadster.com.newsapp.MainActivity;
 import news.roadster.com.newsapp.NApplication;
 import news.roadster.com.newsapp.R;
 import news.roadster.com.newsapp.di.NewsFragmentModule;
+import news.roadster.com.newsapp.pojo.Article;
 import news.roadster.com.newsapp.repo.NewsViewModel;
 
 /**
@@ -34,6 +36,7 @@ public class NewsFragment extends Fragment implements NewsListView {
     private RecyclerView recyclerView;
 
     private NewsViewModel newsViewModel;
+
 
     @Nullable
     @Override
@@ -86,5 +89,10 @@ public class NewsFragment extends Fragment implements NewsListView {
     @Override
     public void populateOfflineInforamtion() {
 
+    }
+
+    @Override
+    public void openWebView(Article article) {
+        ((MainActivity)getActivity()).openDetailActivity(article);
     }
 }

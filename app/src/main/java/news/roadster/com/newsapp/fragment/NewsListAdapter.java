@@ -1,18 +1,27 @@
 package news.roadster.com.newsapp.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import news.roadster.com.newsapp.R;
 import news.roadster.com.newsapp.pojo.Article;
 
@@ -20,11 +29,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
 
     private Context context;
 
-    private  List<Article> articles;
+    private NewsListView listCallback;
 
-    public NewsListAdapter(Context context, List<Article> articleList){
+    private List<Article> articles = new ArrayList<>();
+
+    public NewsListAdapter(Context context, NewsListView newsListView){
         this.context = context;
-        this.articles = articleList;
+        this.listCallback = newsListView;
     }
 
     @Override
@@ -73,8 +84,28 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
             source.setText(article.getAuthor());
             news_link.setText(context.getString(R.string.read_more) +  article.getUrl());
 
+            /*Observable.fromCallable(() -> {
+                URL url = null;
+                try {
+                    url = new URL(article.getUrlToImage());
+                } catch (MalformedURLException e) {
+                    throw e;
+                }
+                Bitmap bmp = null;
+                try {
+                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    return bmp;
+                } catch (IOException e) {
+                    throw e;
+                }
+            }).doOnError(t -> {
+                Log.e("Test", t.getMessage());
+            }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).subscribe((x) -> {
+                if(x != null) icon.setImageBitmap(x);
+            });*/
+
             itemLayout.setOnClickListener(v -> {
-                //open webview
+                listCallback.openWebView(article);
             });
         }
     }

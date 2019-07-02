@@ -28,6 +28,6 @@ public class NewsFragmentModule {
     @ActivityScope
     @Provides
     public NewsListAdapter newsListAdapter(){
-        return new NewsListAdapter(context, new ArrayList<>());
+        return new NewsListAdapter(context, newsListView);
     }
 }
